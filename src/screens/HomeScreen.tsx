@@ -1,58 +1,81 @@
-// HOMESCREEN.TSX — Tela inicial do app (aba "Início")
-// É a primeira tela que o usuário vê quando abre o app
-// Não recebe nenhuma prop pois só exibe informações estáticas
-// Usa o componente Header que criamos antes
-
 import { View, Text, StyleSheet } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 import Header from '../components/Header';
-import { colors, fontSize, spacing } from '../styles/theme';
+import { colors, fontSize, radius, spacing } from '../styles/theme';
 
 export default function HomeScreen() {
-  return (
-    <View style={styles.container}>
+    return (
+        <View style={styles.container}>
+            <Header
+                titulo="App de Ocorrências"
+                subtitulo="Registre problemas da cidade com organização, navegação e interface visual moderna."
+            />
 
-      {/* Cabeçalho com título e subtítulo */}
-      <Header
-        titulo="OcorrênciaApp"
-        subtitulo="Registre e acompanhe problemas urbanos na sua cidade."
-      />
+            <View style={styles.cardInfo}>
+                <Ionicons name="phone-portrait-outline" size={42} color={colors.primary} />
+                <Text style={styles.cardTitulo}>Projeto do Semestre</Text>
+                <Text style={styles.cardTexto}>
+                    Aqui ainda são dados estáticos, mas em breve teremos uma lista dinâmica de ocorrências cadastradas pelos usuários.
+                </Text>
+            </View>
 
-      {/* Card explicativo de como usar o app */}
-      <View style={styles.card}>
-        <Text style={styles.cardTitulo}>Como usar?</Text>
-        <Text style={styles.cardTexto}>
-          • Toque em <Text style={{ fontWeight: 'bold' }}>Nova</Text> para registrar um problema.{'\n'}
-          • Toque em <Text style={{ fontWeight: 'bold' }}>Lista</Text> para ver todas as ocorrências.
-        </Text>
-      </View>
-
-    </View>
-  );
+            <View style={styles.resumoBox}>
+                <Text style={styles.resumoTitulo}>O que teremos no app?</Text>
+                <Text style={styles.item}>• Cadastro de ocorrência</Text>
+                <Text style={styles.item}>• Lista de registros</Text>
+                <Text style={styles.item}>• Foto com câmera</Text>
+                <Text style={styles.item}>• Localização por GPS</Text>
+            </View>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,                          // ocupa toda a tela
-    backgroundColor: colors.background,
-    padding: spacing.lg,
-    justifyContent: 'center',         // centraliza tudo verticalmente
-  },
-  card: {
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    padding: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  cardTitulo: {
-    fontSize: fontSize.lg,
-    fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: spacing.sm,
-  },
-  cardTexto: {
-    fontSize: fontSize.md,
-    color: colors.textLight,
-    lineHeight: 24,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: colors.background,
+        padding: spacing.lg,
+        justifyContent: 'center',
+    },
+    cardInfo: {
+        backgroundColor: colors.surface,
+        borderRadius: radius.lg,
+        padding: spacing.lg,
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: colors.border,
+        marginBottom: spacing.lg,
+    },
+    cardTitulo: {
+        fontSize: fontSize.lg,
+        fontWeight: 'bold',
+        color: colors.text,
+        marginTop: spacing.sm,
+        marginBottom: spacing.xs,
+    },
+    cardTexto: {
+        fontSize: fontSize.md,
+        color: colors.textLight,
+        textAlign: 'center',
+        lineHeight: 22,
+    },
+    resumoBox: {
+        backgroundColor: colors.surface,
+        borderRadius: radius.lg,
+        padding: spacing.md,
+        borderWidth: 1,
+        borderColor: colors.border,
+    },
+    resumoTitulo: {
+        fontSize: fontSize.lg,
+        fontWeight: 'bold',
+        color: colors.text,
+        marginBottom: spacing.sm,
+    },
+    item: {
+        fontSize: fontSize.md,
+        color: colors.textLight,
+        marginBottom: spacing.xs,
+    },
 });
